@@ -1,0 +1,21 @@
+
+target_packages:
+  - vim
+  - wget
+  - curl
+
+info:
+   num: 1
+   name: kim
+   addr: seoul
+
+members:
+  - num: 1
+    name: kim
+    addr: seoul
+  - num: 2
+    name: park
+    addr: inchon
+  - num: 3
+    name: lee
+    addr: busan

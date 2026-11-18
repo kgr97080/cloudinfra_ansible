@@ -1,0 +1,15 @@
+
+- name: ansible 파일 조작 실습
+  hosts: all
+  become: yes
+
+  vars:
+    target_file: /tmp/sample_app.conf
+
+  tasks:
+    - name: 기존 설정값 변경 ( 정규 표현식 매칭 )
+      lineinfile:
+        path: "{{ target_file }}"
+        regexp: '^debug_mode\s*='
+        line: "debug_mode = true"
+        state: present

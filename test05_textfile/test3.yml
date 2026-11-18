@@ -1,0 +1,16 @@
+
+- name: ansible 파일 조작 실습
+  hosts: all
+  become: yes
+
+  vars:
+    target_file: /tmp/sample_app.conf
+
+  tasks:
+    - name: lineinfile 특정 문자열 바로 밑에 새로운 줄 추가 
+      lineinfile:
+        path: "{{ target_file }}"
+        insertafter: '^listen_port'
+        line: 'timeout = 60'
+        state: present
+

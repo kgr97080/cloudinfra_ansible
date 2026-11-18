@@ -1,0 +1,4 @@
+
+server_role: "web-server"
+admin_email: "admin@naver.com"
+app_version: "v1.0.0"
