@@ -1,0 +1,27 @@
+
+---
+- name: Git 설치 및 사용자 환경 설정
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: 1. 패키지 Git 설치
+      package:
+        name: git
+        state: present
+
+    - name: 2. user.name 설정
+      git_config:
+        name: user.name
+        value: "Kimgiryeong"
+        scope: global
+      become: yes
+      become_user: user1
+
+    - name: 3. user.email 설정
+      git_config:
+        name: user.email
+        value: "kgr97080@gmail.com"
+        scope: global
+      become: yes
+      become_user: user1
