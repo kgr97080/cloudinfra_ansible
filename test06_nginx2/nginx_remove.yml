@@ -1,0 +1,43 @@
+
+# when  조건문으로 OS 분기해 dnf(rocky)와 apt(ubuntu)의 의존성, 설정 완전 삭제 옵션을 각각 태우는 방식 
+
+- name: 모든 OS 에 nginx 완전삭제
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: 1. OS 별 변수 파일 불러오기
+      include_vars: "vars/{{ ansible_distribution }}.yml"
+
+    - name: 2. 서비스 중지 및 비활성화
+      service:
+        name: nginx
+        state: stopped
+        enabled: no
+      ignore_errors: yes
+
+    # Rocky 전용 패키지 삭제(의존성 포함)
+    - name: 3-1. Rocky 에서 nginx 삭제
+      dnf:
+        name: nginx
+        state: absent
+        autoremove: yes
+      when: ansible_distribution == "Rocky"
+
+    # Ubuntu 전용 패키지 삭제(설정파일 및 의존성 포함)
+    - name: 3-2. Ubuntu 에서 nginx 삭제
+      apt:
+        name: nginx
+        state: absent
+        purge: yes
+        autoremove: yes
+      when: ansible_distribution == "Ubuntu"
+
+    - name: 4. 설정파일, 로그, index.html 삭제
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /etc/nginx
+        - /var/log/nginx
+        - "{{ web_root }}/index.html"

@@ -1,0 +1,4 @@
+
+
+web_root: /usr/share/nginx/html
+fw_service: firewalld
