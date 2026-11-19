@@ -1,0 +1,43 @@
+
+
+
+    - name: nginx 설치
+      package:
+        name: nginx
+        state: present
+
+    - name: 서비스 시작
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: rocky index.html 템플릿 배포
+      template:
+        src: index.html
+        dest: "{{ rocky_web_root }}/index.html"
+        mode: "0644"
+      when: ansible_distribution  == 'Rocky'
+      
+
+    - name: ubuntu index.html 템플릿 배포
+      template:
+        src: index.html
+        dest: "{{ ubuntu_web_root }}/index.html"
+        mode: "0644"
+      when:  ansible_distribution  =='Ubuntu'
+      
+
+    - name: 방화벽 해제
+      service:
+        name: "{{ rocky_fw_service }}"
+        state: stopped
+        enabled: no
+      when: ansible_distribution  == 'Rocky' 
+
+    - name: 방화벽 해제
+      service:
+        name: "{{ ubuntu_fw_service }}"
+        state: stopped
+        enabled: no
+      when: ansible_distribution == 'Ubuntu'

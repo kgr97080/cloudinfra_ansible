@@ -1,0 +1,7 @@
+---
+
+rocky_web_root: /usr/share/nginx/html
+rocky_fw_service: firewalld
+
+ubuntu_web_root: /var/www/html
+ubuntu_fw_service: ufw

@@ -1,0 +1,7 @@
+---
+- name: 모든 OS에서 nginx Role 기반 완전 삭제
+  hosts: all
+  become: yes
+
+  roles:
+    - nginx_remove
