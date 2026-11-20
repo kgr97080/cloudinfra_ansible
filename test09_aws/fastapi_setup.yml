@@ -1,4 +1,3 @@
-
 # fastapi_setup.yml
 ---
 - name: fastapi 듀얼 포트 배포 (8000, 8001)
