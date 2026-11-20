@@ -1,6 +1,4 @@
-
 # test03_playbook/init_rocky.yml
-
 
 - name: epel-release 설치
   hosts: rocky
@@ -12,7 +10,7 @@
         state: present
       register: epel_result
     - name: epel 디버깅
-      debug:
+      debug: 
         var: epel_result
     - name: 확인하기
       debug:
@@ -24,8 +22,3 @@
           변경여부 : {{ epel_result.changed }}
           어쩌구...
           저쩌구...
-
-    
-
- 
-    

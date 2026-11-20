@@ -1,20 +1,20 @@
+# test03_playbook/install_git2.yml
 
----
 - name: Git 설치 및 사용자 환경 설정
   hosts: all
   become: yes
 
+  # 변수를 정의하고 값을 미리 담아 놓을수 있다.
   vars:
-    user_name: "Kimgiryeong"
-    user_email: "kgr97080@gmail.com"
-
+    user_name: "kimgura"
+    user_email: "oli999@naver.com"
 
   tasks:
-    - name: 1. 패키지 Git 설치
+    - name: 1. Git 페키지 설치
       package:
         name: git
         state: present
-
+    
     - name: 2. user.name 설정
       git_config:
         name: user.name
@@ -22,7 +22,7 @@
         scope: global
       become: yes
       become_user: user1
-
+    
     - name: 3. user.email 설정
       git_config:
         name: user.email

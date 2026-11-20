@@ -41,5 +41,3 @@
           (30, 'SALES', 'CHICAGO'),
           (40, 'OPERATIONS', 'BOSTON')
           ON CONFLICT (deptno) DO NOTHING;
-
-

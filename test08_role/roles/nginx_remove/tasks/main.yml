@@ -1,3 +1,4 @@
+
 - name: 2. 서비스 중지 및 비활성화
   service:
     name: nginx
